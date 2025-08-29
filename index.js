@@ -23,7 +23,7 @@ for(const btn of callBtns){
         let currentcoin = parseInt(coinCount.innerText);
 
         if (currentcoin < 20){
-            alert("Not enought coins");
+            alert("Sorry! Not enough coins to Call !!");
             return;
         }
         else{
@@ -73,7 +73,7 @@ for(const btn of callBtns){
         time.style.right = "10px";
         time.style.top = "50%";
         time.style.transform = "translateY(-50%)";
-        time.style.fontWeight = "bold";
+        // time.style.fontWeight = "bold";
 
         callrecord.appendChild(time);
 
