@@ -28,7 +28,19 @@ for(const btn of callBtns){
         else{
             coinCount.innerText = currentcoin - 20;
         }
-    })
+
+        const card = btn.parentElement.parentElement;
+        const serviceName = card.querySelector(".card-h2").innerText;
+        const serviceNumber = card.querySelector(".card-number").innerText;
+
+        alert("Calling" +" " + serviceName + "  "+ serviceNumber);
+
+
+        // add call hisory
+        const entry = document.createElement("div");
+        entry.innerText =  serviceName + "-" + serviceNumber;
+        callHistoryContainer.appendChild(entry);
+    });
 }
 
 
