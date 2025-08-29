@@ -313,12 +313,13 @@
 
 
 /* call history cards design */
-#call-history-cards div {
+/* #call-history-cards div {
     background-color: #FAFAFA;
-    /* border: 1px solid blue; */
+    
     border-radius: 8px;
     
     padding: 10px;
     margin: 8px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+}  
+ */

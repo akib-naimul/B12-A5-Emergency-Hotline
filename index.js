@@ -16,6 +16,7 @@ const coinCount = document.getElementById("coins");  //get the navbar coins tag
 const callHistoryContainer = document.getElementById("call-history-cards");   //mother call history coinatiner
 
 const callBtns = document.querySelectorAll(".call-btn");    // get call buttons from cards
+const clearbtn = document.getElementById("clear-btn");
 
 for(const btn of callBtns){
     btn.addEventListener("click",function(){
@@ -30,58 +31,69 @@ for(const btn of callBtns){
         }
 
         const card = btn.parentElement.parentElement;
-        const serviceName = card.querySelector(".card-h2").innerText;
+        const serviceName = card.querySelector(".card-h1").innerText;
         const serviceNumber = card.querySelector(".card-number").innerText;
 
         alert("Calling" +" " + serviceName + "  "+ serviceNumber);
 
 
         // add call hisory
+        // type-3 (call history with time)
+        const callrecord = document.createElement("div");
+        callrecord.style.position = "relative";
+        callrecord.style.backgroundColor = "#FAFAFA";
+        callrecord.style.borderRadius = "8px";
+        callrecord.style.padding = "10px";
+        callrecord.style.margin = "8px 0";
+        callrecord.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+
+        // get the service name
+        const nameS = document.createElement("p");
+        nameS.innerText = serviceName;
+        callrecord.appendChild(nameS);
+
+        //get the service Number
+        const numberS = document.createElement("p");
+        numberS.innerText = serviceNumber;
+        callrecord.appendChild(numberS);
+
+        // get the call time
+        const time = document.createElement("p");
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+        let ampm = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        time.innerText = `${hours}:${minutes}:${seconds} ${ampm}`;
+        time.style.position = "absolute";
+        time.style.right = "10px";
+        time.style.top = "50%";
+        time.style.transform = "translateY(-50%)";
+        time.style.fontWeight = "bold";
+
+        callrecord.appendChild(time);
+
+        // append to cal history
+        callHistoryContainer.appendChild(callrecord);
+
+
+
         //type-2:
-         const entry = document.createElement("div");
-         const nameP = document.createElement("p");
-         nameP.innerText = serviceName;
-         const numberP = document.createElement("p");
-         numberP.innerText = serviceNumber;
+        //  const entry = document.createElement("div");
+        //  const nameP = document.createElement("p");
+        //  nameP.innerText = serviceName;
+        //  const numberP = document.createElement("p");
+        //  numberP.innerText = serviceNumber;
 
-         entry.appendChild(nameP);
-         entry.appendChild(numberP);
-         callHistoryContainer.appendChild(entry);
-
-
-        //type-1
-        // const entry = document.createElement("div");
-        // entry.innerText =  serviceName + "-" + serviceNumber;
-        // callHistoryContainer.appendChild(entry);
+        //  entry.appendChild(nameP);
+        //  entry.appendChild(numberP);
+        //  callHistoryContainer.appendChild(entry);  
     });
 }
-
-
-// //  clear bvutton functionality:
-// const callhistorycontainer = document.getElementById("call-history-cards");
-// const clearbtn = document.getElementById("clear-btn");
-
-// clearbtn.addEventListener("click",function(){
-//     callhistorycontainer.innerText = "";
-// });
-
-// 
-
-const callhistory = document.getElementById("call-history-cards");
-const clearbtn = document.getElementById("clear-btn");
-
-document.getElementById("call-btn").addEventListener("click",function(){
-    const serviceName = document.querySelector(".card-h1").innerText;
-    const serviceNumber = document.querySelector(".card-number").innerText;
-
-    //create nw card
-    const historycard = document.createElement("div");
-    historycard.className = "history-card";
-    historycard.innerHTML = "<h4>" + serviceName + "</h4><p>" + serviceNumber + "</p>";
-
-    //  add to callhistory section
-    callhistory.appendChild(historycard);
-});
 
 // clear button functionality
 clearbtn.addEventListener("click", function(){
@@ -89,4 +101,27 @@ clearbtn.addEventListener("click", function(){
 });
 
 
+// challenege part functionality
+//  copy button functional;ity
+const copybtn = document.querySelectorAll("#main-container #copy-btn");
+const copycount = document.querySelector("#box-3 p")   //get the copy btn count
 
+copybtn.forEach(function(btn){
+    btn.addEventListener("click", function(){
+        const card = btn.parentElement.parentElement;
+        const number = card.querySelector(".card-number").innerText;
+        //above part:  get/copy the phn number
+
+        //copy the phn number
+        navigator.clipboard.writeText(number);
+
+        alert("The Number is copied " + number);
+
+        // change/update the copy count from navbar
+        const currentcopycount = parseInt(copycount.innerText);
+        copycount.innerText = (currentcopycount + 1) + "  Copy";
+    });
+});
+
+
+//  live calling time
