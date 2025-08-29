@@ -83,5 +83,10 @@ document.getElementById("call-btn").addEventListener("click",function(){
     callhistory.appendChild(historycard);
 });
 
+// clear button functionality
+clearbtn.addEventListener("click", function(){
+    callHistoryContainer.innerHTML ="";
+});
+
 
 
