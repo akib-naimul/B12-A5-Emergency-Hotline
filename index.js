@@ -37,9 +37,22 @@ for(const btn of callBtns){
 
 
         // add call hisory
-        const entry = document.createElement("div");
-        entry.innerText =  serviceName + "-" + serviceNumber;
-        callHistoryContainer.appendChild(entry);
+        //type-2:
+         const entry = document.createElement("div");
+         const nameP = document.createElement("p");
+         nameP.innerText = serviceName;
+         const numberP = document.createElement("p");
+         numberP.innerText = serviceNumber;
+
+         entry.appendChild(nameP);
+         entry.appendChild(numberP);
+         callHistoryContainer.appendChild(entry);
+
+
+        //type-1
+        // const entry = document.createElement("div");
+        // entry.innerText =  serviceName + "-" + serviceNumber;
+        // callHistoryContainer.appendChild(entry);
     });
 }
 
