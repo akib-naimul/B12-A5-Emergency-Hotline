@@ -57,12 +57,30 @@ for(const btn of callBtns){
 }
 
 
-//  clear bvutton functionality:
-const callhistorycontainer = document.getElementById("call-history-cards");
+// //  clear bvutton functionality:
+// const callhistorycontainer = document.getElementById("call-history-cards");
+// const clearbtn = document.getElementById("clear-btn");
+
+// clearbtn.addEventListener("click",function(){
+//     callhistorycontainer.innerText = "";
+// });
+
+// 
+
+const callhistory = document.getElementById("call-history-cards");
 const clearbtn = document.getElementById("clear-btn");
 
-clearbtn.addEventListener("click",function(){
-    callhistorycontainer.innerText = "";
+document.getElementById("call-btn").addEventListener("click",function(){
+    const serviceName = document.querySelector(".card-h1").innerText;
+    const serviceNumber = document.querySelector(".card-number").innerText;
+
+    //create nw card
+    const historycard = document.createElement("div");
+    historycard.className = "history-card";
+    historycard.innerHTML = "<h4>" + serviceName + "</h4><p>" + serviceNumber + "</p>";
+
+    //  add to callhistory section
+    callhistory.appendChild(historycard);
 });
 
 
