@@ -57,4 +57,13 @@ for(const btn of callBtns){
 }
 
 
+//  clear bvutton functionality:
+const callhistorycontainer = document.getElementById("call-history-cards");
+const clearbtn = document.getElementById("clear-btn");
+
+clearbtn.addEventListener("click",function(){
+    callhistorycontainer.innerText = "";
+});
+
+
 
